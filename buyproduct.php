@@ -274,10 +274,7 @@ if($userprofile != true){
     font-size: 1.3rem;
 }
         }
-
         @media only screen and (min-width:991px) and (max-width: 1115px) {
-
-
 .navbar-nav{
     font-size: 1.2vw;
 }
@@ -403,7 +400,6 @@ if($userprofile != true){
 }
 }
 @media only screen and (width < 401px){
-
     #search-icon a{
         margin: 9px 5px;
     }
@@ -425,7 +421,6 @@ if($userprofile != true){
         .navbar-collapse{
             max-height: 100vh;
         }
-        
         .navbar-nav a {
             padding: 0px;
         }
@@ -446,14 +441,11 @@ if($userprofile != true){
                 justify-content: center !important
             }
         }
-        
         @media (min-width: 1200px) {
     .h2, h2 {
         font-size: 1.5rem;
     }
 }
-        
-        
         </style>
         <body>
         <nav class="navbar navbar-expand-lg">

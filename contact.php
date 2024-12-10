@@ -186,8 +186,6 @@ $userstatus= $_SESSION['status'] ;
             border-radius: 20px;
         }
         @media only screen and (min-width:991px) and (max-width: 1115px) {
-
-
 .navbar-nav{
     font-size: 1.2vw;
 }
@@ -195,12 +193,10 @@ $userstatus= $_SESSION['status'] ;
     padding: .5vw 0px;
 }
 }
-
 @media only screen and (max-width: 991px) {
             #searchbar-section {
     padding: 0px 0px 22px 0px;
 }
-
 }
 @media only screen and (max-width: 1000px) {
 .navbar-brand {

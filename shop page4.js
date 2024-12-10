@@ -125,11 +125,6 @@ function brandelement(params) {
     }
 }
 
-
-
-
-
-
 let myproducts;
 let shoecards = document.getElementById("shoecards");
 let filterbotton = document.getElementById("mybtn");
@@ -539,7 +534,6 @@ function changeminusnumber(miunsIcon,quantityInput,retrievedcart,userselectedwis
                     changetrashelement(event,userselectedwishlist);
                   return
                 }
-              
                 retrievedcart[i].quantity-=1;
                 quantityInput.value= retrievedcart[i].quantity
                 checktotalprice(retrievedcart);

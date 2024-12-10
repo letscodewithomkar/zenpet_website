@@ -26,11 +26,9 @@ if ($userstatus==0) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link href="https://fonts.cdnfonts.com/css/futura-md-bt" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="cartlist.css">
     <script src="https://kit.fontawesome.com/b18067c249.js" crossorigin="anonymous"></script>
-   
     <title>Document</title>
     <style>
          :root {
@@ -44,7 +42,6 @@ if ($userstatus==0) {
             --bgcolor2: #110A4E;
             --footer-color: #111111
         }
-        
         .darkmode {
             --primary-color: color: #28B45F;
             
@@ -58,17 +55,14 @@ if ($userstatus==0) {
             --bgcolor3: #111111, #111111, #111111, #111111, #111111;
             --footer-color: #252525
         }
-        
         * {
             margin: 0px;
             padding: 0px;
         }
-
         .navbar-toggler-icon{
             background-image: url(
 "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(40, 189, 95, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
         }
-
         #responsive-nav{
             display: flex;
             color: #28B45F;
@@ -95,8 +89,6 @@ if ($userstatus==0) {
             height: 100%;
             width: 100%;
         }
-        /* width: clamp(400px,530px,600px); */
-        
         #cartshopping{
             display: none;
         }
@@ -143,11 +135,9 @@ if ($userstatus==0) {
         .navbar-nav a {
             color: #28B45F;
         }
-        
         .navbar-img img {
             width: 10rem;
-        }
-        
+        } 
         .navbar-links {
             justify-content: flex-end;
         }
@@ -168,7 +158,6 @@ if ($userstatus==0) {
         }    
         #search-icon{
             padding: 7px 0px;
-    /* height: 10%; */
     place-items: center;
     display: flex;
     background: black;
@@ -177,7 +166,6 @@ if ($userstatus==0) {
         #search-icon a:hover{
        color:#174478;
         }
-      
         #mainpage{
             top:70px;
             position: relative;
@@ -191,7 +179,6 @@ if ($userstatus==0) {
             position: relative;
             overflow: hidden;
             flex-direction: column;
-            /* min-height: 120vh; */
             padding-bottom: 20px;
             min-height: 90vh;
         }
@@ -880,6 +867,9 @@ if ($userstatus==0) {
                 border-radius: 0px;
                 padding: 5px;
             }
+            #applybtn{
+                margin-block: 20px;
+            }
             #shop-box {
                 margin-top: 3dvh;
             }
@@ -1003,14 +993,12 @@ if ($userstatus==0) {
     </nav>
     <div id="wishlist-section">
     <div id="header_whishlist">
-
         <h2>Cartlist</h2>
         <div id="wishlist_close_arrow">
         <i class="fa-solid fa-xmark fa-lg"></i>
         </div>
     </div>
     <div class="wishlist-box">
-
     </div>
     <div id="total-section">
         <h2 id="totallistvalue">Total Amount :₹ 0</h2>

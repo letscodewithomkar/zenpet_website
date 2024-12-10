@@ -2,10 +2,10 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-$servername = "db";
-$username = "root";
-$password = "omshubh123";
-$dbname = "zenpetsdb";
+$servername = getenv('DB_HOST');    
+$username = getenv('DB_USER');       
+$password = getenv('DB_PASSWORD');      
+$dbname = getenv('DB_NAME'); 
 
 // Retrieve JSON data from the request
 $data = json_decode(file_get_contents("php://input"), true);

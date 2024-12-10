@@ -3,10 +3,10 @@ header("Access-Control-Allow-Origin: *"); // Allow CORS
 header("Content-Type: application/json"); // JSON response
 
 // Database credentials
-$servername = "db";
-$username = "root";
-$password = "omshubh123";
-$dbname = "zenpetsdb";
+$servername = getenv('DB_HOST');        
+$username = getenv('DB_USER');          
+$password = getenv('DB_PASSWORD');          
+$dbname = getenv('DB_NAME'); 
 
 // Retrieve and sanitize the username from GET request
 $currentUsername = filter_input(INPUT_GET, 'username', FILTER_SANITIZE_STRING);
