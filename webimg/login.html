@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/b18067c249.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+         :root {
+            --primary-color: #00C9A2;
+            --text-color: #ffffff;
+            --card-background: #111111;
+            --nav-bacground: #224D76;
+            --nav-decoration: #111111;
+            --selector-mode: #1F74C8;
+            --bgcolor: #041234;
+            --bgcolor2: #110A4E;
+            --footer-color: #111111
+        }
+        
+        .darkmode {
+            --primary-color: #00C9A2;
+            --text-color: #ffffff;
+            --card-background: #041234;
+            --nav-bacground: #252525;
+            --nav-decoration: #103764;
+            --selector-mode: #1F74C8;
+            --bgcolor: #111111;
+            --bgcolor2: #111111;
+            --bgcolor3: #111111, #111111, #111111, #111111, #111111;
+            --footer-color: #252525
+        }
+        
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+        /* width: clamp(400px,530px,600px); */
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: var(--nav-bacground);
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+        }
+        
+        #hamburger {
+            display: none;
+        }
+        
+        .line {
+            background-color: white;
+            width: 26px;
+            z-index: 3;
+            height: 2px;
+            margin: 6px 0px;
+        }
+        
+        #names {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        #navlinkes ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        #navlinkes ul li {
+            margin: 0px 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        #navlinkes ul li a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-size: clamp(1rem, 1vw, 1vw);
+        }
+        
+        #navlinkes {
+            display: flex;
+            align-items: center;
+        }
+        
+        #responsive-mode {
+            display: none;
+        }
+        
+        #webname {
+            color: #01AFAB;
+            clip-path: polygon(0 0, 100% 0%, 70% 100%, 0% 100%);
+            background-color: var(--nav-decoration);
+            padding: 11px 0px;
+            width: 239px;
+        }
+        
+        #webname h1 {
+            text-align: center;
+            margin-right: 42px;
+        }
+        
+        #webmode {
+            width: 60px;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 10px;
+            background-color: #111111;
+            border-radius: 30px;
+            color: white;
+            overflow: hidden;
+            position: relative;
+            transition: right 1s ease;
+        }
+        /* sun 35px */
+        /* moon  0px */
+        
+        #webmode i {
+            z-index: 1;
+            position: relative;
+        }
+        
+        #webname h1 a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .wishlist {
+            /* margin-left: 0px;
+            position: relative;
+            top: -38px;
+            left: 74px; */
+            color: #E6616A;
+            margin-left: 20px;
+        }
+        
+        #selector {
+            position: absolute;
+            background-color: var(--selector-mode);
+            width: 45px;
+            height: 36px;
+            top: 0px;
+            border-radius: 30px;
+            right: 36px;
+            transition: right .5s ease;
+        }
+        
+        .selectortoggle {
+            right: 0px !important;
+        }
+        
+        #sun {
+            padding-right: 18px;
+        }
+        
+        #moon {
+            padding-right: 4px;
+        }
+        
+        #singupsection {
+            background: linear-gradient(to right top, var(--bgcolor2), var(--bgcolor));
+            display: grid;
+            place-items: center;
+            height: 70vh;
+        }
+        
+        #singup {
+            background-color: var(--card-background);
+            padding: 20px;
+            width: 355px;
+            border-radius: 20px;
+        }
+        
+        form input {
+            width: 97%;
+            height: 30px;
+            padding: 3px;
+            border-radius: 6px;
+        }
+        
+        #username {
+            margin-bottom: 25px;
+        }
+        
+        #singup h2:first-child {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .alertdiv {
+            color: red;
+            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+        
+        button {
+            padding: 8px;
+            font-size: 1.2rem;
+            background: var(--primary-color);
+            border-radius: 10px;
+            border: none;
+        }
+        
+        #btndiv {
+            display: grid;
+            place-items: center;
+            margin-top: 15px;
+        }
+        
+        .eyeicon {
+            translate: -4vh 1.5vh;
+            position: absolute;
+        }
+        
+        footer {
+            background-color: var(--card-background);
+            color: #E6616A;
+            padding: 2em 0px;
+            z-index: 1;
+            position: relative;
+        }
+        
+        footer {
+            background-color: var(--footer-color);
+            color: #E6616A;
+            padding: 2em 0px;
+        }
+        
+        #footer {
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        #support h2 {
+            text-align: center;
+        }
+        
+        #offer h2 {
+            text-align: center;
+        }
+        
+        #support-box,
+        #offer-box {
+            display: flex;
+            justify-content: space-around;
+            width: 40vw;
+        }
+        
+        #support-items1,
+        #support-item2,
+        #offer-items1,
+        #offer-items2 {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #support-items1 span,
+        #support-item2 span,
+        #offer-items1 span,
+        #offer-items2 span {
+            padding: 15px 0px;
+            text-align: center;
+        }
+        
+        #footer-info {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        #footer-info p {
+            margin-top: 10px;
+        }
+        
+         ::-webkit-scrollbar {
+            width: .7em;
+        }
+        
+         ::-webkit-scrollbar-track {
+            background: #3B309B;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: #34ACBE;
+            border-radius: 20px;
+        }
+        
+        @media screen and (width < 420px) {
+            nav {
+                display: flex;
+                justify-content: space-between;
+                background-color: #224D7600;
+                z-index: 3;
+            }
+            #responsive-mode {
+                display: block;
+            }
+            #webname {
+                background-color: #1110;
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+                position: absolute;
+                text-align: left;
+                width: 80%;
+            }
+            #webname[data-menu="true"] {
+                width: 100%;
+                position: absolute;
+                z-index: 3;
+                text-align: center;
+                translate: 0px 29px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #webname h1 {
+                margin-left: 13px;
+                font-size: clamp(.5rem, 1.7rem, 3rem);
+                text-align: left;
+            }
+            #webname[data-menu="true"] h1 {
+                margin-left: 13px;
+                font-size: clamp(.5rem, 1.2rem, 3rem);
+                text-align: left;
+                margin-right: 0px;
+                font-size: clamp(.5rem, 1.9rem, 3rem);
+                text-align: center;
+                width: 100%;
+            }
+            #names {
+                flex-direction: column;
+                position: absolute;
+                top: 0px;
+                right: 0vw;
+                height: 100vh;
+                background: linear-gradient(to bottom right, var(--bgcolor), var(--bgcolor2));
+                z-index: 2;
+                clip-path: circle(56px at 98% 0%);
+                transition: clip-path 1s ease;
+                border-radius: 0px 0px 20px 20px;
+                width: 100%;
+            }
+            #names[data-menu="true"] {
+                clip-path: circle(140% at 70% 0%);
+            }
+            .slider-item-button {
+                flex-direction: column;
+            }
+            .btn {
+                margin-top: 5px;
+                margin-left: 0px;
+            }
+            /* .btn:hover,
+            .btn:active {
+                color: red;
+            } */
+            .wishlist {
+                /* margin-left: 0px;
+                position: relative;
+                top: -38px;
+                left: 74px; */
+                color: #E6616A;
+            }
+            #right {
+                flex-direction: column-reverse;
+                justify-content: end;
+                align-items: end;
+                width: 100%;
+            }
+            #modes {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                flex-direction: row-reverse;
+                left: 1px;
+                top: 9px;
+            }
+            #navlinkes {
+                display: block;
+            }
+            #navlinkes ul {
+                flex-direction: column;
+                width: 100vw;
+            }
+            #navlinkes ul li {
+                margin: -1px 0px;
+                text-align: center;
+                padding: 0px 13px;
+                border-top: 2px solid skyblue;
+                border-bottom: 2px solid skyblue;
+                height: 75px;
+                display: flex;
+                justify-content: flex-start;
+                position: relative;
+                align-items: center;
+            }
+            #navlinkes ul li a {
+                color: #01AFAB;
+                z-index: 3;
+                font-size: clamp(1rem, 1vw + 1rem, 2rem);
+            }
+            #navlinkes ul li::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background: linear-gradient( to right, #0d69c438, #0d69c469, #0d69c4, #01AFAB, #0dacc4);
+                width: 0%;
+            }
+            #navlinkes ul li:hover::before,
+            #navlinkes ul li:active::before {
+                transition: width 800ms ease;
+                width: 100%;
+                color: red;
+            }
+            #hamburger {
+                display: block;
+                z-index: 2;
+                border-radius: 27px;
+                margin-left: 30px;
+            }
+            #responsive-mode span {
+                color: #01afab;
+                font-size: clamp(1rem, 1vw + 1rem, 2rem);
+            }
+            #themesdiv {
+                display: flex;
+                justify-content: space-between;
+                height: 63px;
+                width: 100%;
+                align-items: center;
+            }
+            .slider-item-button {
+                flex-direction: column;
+            }
+            .btn {
+                margin-top: 5px;
+                margin-left: 0px;
+            }
+            .btn:hover,
+            .btn:active {
+                color: red;
+            }
+            .wishlist {
+                /* margin-left: 0px;
+                position: relative;
+                top: -38px;
+                left: 74px; */
+                color: #E6616A;
+            }
+            #right {
+                flex-direction: column-reverse;
+                justify-content: end;
+                align-items: end;
+                width: 100%;
+                height: 59px;
+            }
+            #support h2 {
+                text-align: center;
+                font-size: clamp(1rem, 1rem + 1vw, 2rem);
+            }
+            #offer h2 {
+                text-align: center;
+                font-size: clamp(1rem, .9rem + 1vw, 1.5rem);
+            }
+            #support-box,
+            #offer-box {
+                flex-direction: column;
+            }
+            #support-items1 span,
+            #support-item2 span,
+            #offer-items1 span,
+            #offer-items2 span {
+                padding: 15px 0px;
+                text-align: center;
+                font-size: clamp(.8rem, .2rem + .2vw, 2rem);
+                margin: auto;
+            }
+            #footer-info {
+                text-align: center;
+                width: 70vw;
+                margin: auto;
+                margin-top: auto;
+                margin-top: 20px;
+                font-size: clamp(.9rem, .1rem + .5vw, 1.5rem);
+            }
+            #footer-info p {
+                margin-top: 10px;
+            }
+            #shoecards {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            #shopsection-box {
+                width: 90%;
+            }
+            .singupinputdiv {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+            #username,
+            #Password,
+            #ComfirmPassword {
+                width: 80%;
+            }
+            .eyeicon {
+                translate: 27vw -2vh;
+                position: absolute;
+            }
+            .alertdiv {
+                width: 80%;
+            }
+            #singup {
+                width: 80%;
+            }
+        }
+        
+        @media screen and (420px < width < 921px) {
+            nav {
+                display: flex;
+                justify-content: space-between;
+                background-color: #224D7600;
+                z-index: 3;
+            }
+            #responsive-mode {
+                display: block;
+            }
+            #webname {
+                background-color: #1110;
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+                position: absolute;
+                text-align: left;
+                width: 80%;
+            }
+            #webname[data-menu="true"] {
+                width: 100%;
+                position: absolute;
+                z-index: 3;
+                text-align: center;
+                translate: 0px 29px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #webname h1 {
+                margin-left: 13px;
+                font-size: clamp(.5rem, 1.7rem, 3rem);
+                text-align: left;
+            }
+            #webname[data-menu="true"] h1 {
+                margin-left: 13px;
+                font-size: clamp(.5rem, 1.2rem, 3rem);
+                text-align: left;
+                margin-right: 0px;
+                font-size: clamp(.5rem, 1.9rem, 3rem);
+                text-align: center;
+                width: 100%;
+            }
+            #names {
+                flex-direction: column;
+                position: absolute;
+                top: 0px;
+                right: 0vw;
+                height: 100vh;
+                background: linear-gradient(to bottom right, var(--bgcolor), var(--bgcolor2));
+                z-index: 2;
+                clip-path: circle(56px at 98% 0%);
+                transition: clip-path 1s ease;
+                border-radius: 0px 0px 20px 20px;
+                width: 100%;
+            }
+            #names[data-menu="true"] {
+                clip-path: circle(140% at 70% 0%);
+            }
+            .slider-item-button {
+                flex-direction: column;
+            }
+            .btn {
+                margin-top: 5px;
+                margin-left: 0px;
+            }
+            .btn:hover,
+            .btn:active {
+                color: red;
+            }
+            .wishlist {
+                /* margin-left: 0px; */
+                /* position: relative;
+                top: -38px;
+                left: 85px; */
+                color: #E6616A;
+            }
+            #right {
+                flex-direction: column-reverse;
+                justify-content: end;
+                align-items: end;
+                width: 100%;
+            }
+            #modes {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                flex-direction: row-reverse;
+                left: 1px;
+                top: 9px;
+            }
+            #navlinkes {
+                display: block;
+            }
+            #navlinkes ul {
+                flex-direction: column;
+                width: 100vw;
+            }
+            #navlinkes ul li {
+                margin: -1px 0px;
+                text-align: center;
+                padding: 0px 13px;
+                border-top: 2px solid skyblue;
+                border-bottom: 2px solid skyblue;
+                height: 75px;
+                display: flex;
+                justify-content: flex-start;
+                position: relative;
+                align-items: center;
+            }
+            #navlinkes ul li a {
+                color: #01AFAB;
+                z-index: 3;
+                font-size: clamp(1rem, 1vw + 1rem, 2rem);
+            }
+            #navlinkes ul li::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background: linear-gradient( to right, #0d69c438, #0d69c469, #0d69c4, #01AFAB, #0dacc4);
+                width: 0%;
+            }
+            #navlinkes ul li:hover::before,
+            #navlinkes ul li:active::before {
+                transition: width 800ms ease;
+                width: 100%;
+                color: red;
+            }
+            #responsive-mode span {
+                color: #01afab;
+                font-size: clamp(1rem, 1vw + 1rem, 2rem);
+            }
+            #hamburger {
+                display: block;
+                z-index: 2;
+                border-radius: 27px;
+                margin-left: 50px;
+            }
+            #themesdiv {
+                display: flex;
+                justify-content: space-between;
+                height: 63px;
+                width: 100%;
+                align-items: center;
+            }
+        }
+        
+        @media screen and (400px < width < 750px) {
+            #support h2 {
+                text-align: center;
+                font-size: clamp(1rem, 1.3rem + 1vw, 2rem);
+            }
+            #support-box,
+            #offer-box {
+                width: 100%;
+            }
+            #footer {
+                flex-direction: column;
+            }
+            #support-items1,
+            #support-item2,
+            #offer-items1,
+            #offer-items2 {
+                width: 100%;
+                align-items: center;
+            }
+            #support-items1 span,
+            #support-item2 span,
+            #offer-items1 span,
+            #offer-items2 span {
+                font-size: clamp(1rem, 1rem + .2vw, 2rem);
+                /* width: 49px; */
+                text-align: center
+            }
+            #offer-items2:nth-child(3) {
+                width: 55px;
+            }
+            #footer-info {
+                width: 90%;
+                margin: auto;
+                margin-top: auto;
+                margin-top: 20px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav>
+        <div id="webname" data-menu="false">
+            <h1> <a href="./website.html">Baap Ka Paisa</a></h1>
+        </div>
+        <div id="right">
+            <div id="names" data-menu="false">
+
+                <div id="navlinkes" data-menu="flase">
+                    <ul>
+                        <li><a href="./new product.html">New Product</a></li>
+                        <li><a href="./shop.html">Store</a></li>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./login.html">Log in</a></li>
+                        <li><a href="./singup.html">Sign Up</a></li>
+                        <li>
+
+                            <div id="themesdiv">
+
+                                <div id="responsive-mode">
+                                    <span>Themes Mode</span>
+                                </div>
+                                <div id="webmode">
+                                    <i id="sun" class="fa-solid fa-sun"></i>
+                                    <i id="moon" class="fa-solid fa-moon"></i>
+                                    <span id="selector"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+            <div id="modes">
+
+                <div id="hamburger" data-menu="false">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section id="singupsection">
+        <div id="singup">
+            <h2>Login</h2>
+            <form action="">
+                <div class="singupinputdiv">
+                    <input type="text" placeholder="Username" id="username">
+
+                </div>
+                <div class="singupinputdiv">
+                    <input type="password" placeholder="Password" id="Password">
+                    <i class="fa-solid fa-eye-slash eyeicon" id="togglePassword1"></i>
+                    <!-- <div class="alertdiv">
+                        <span>Show Password</span>
+                    </div> -->
+                </div>
+
+                <div id="btndiv">
+                    <button id="btn">Login</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <div id="footer">
+            <div id="support">
+                <h2>Support</h2>
+                <div id="support-box">
+                    <div id="support-items1">
+                        <span>My Account</span>
+                        <span>Track Order</span>
+                        <span>Contact Us</span>
+                    </div>
+                    <div id="support-item2">
+                        <span>About Us</span>
+                        <span>Purchase History</span>
+                        <span>Initiate Return</span>
+                    </div>
+                </div>
+            </div>
+            <div id="offer">
+                <h2>Offer and Policy</h2>
+                <div id="offer-box">
+                    <div id="offer-items1">
+                        <span>Return Policy</span>
+                        <span>Privacy Policy</span>
+                        <span>Student Discount</span>
+                    </div>
+                    <div id="offer-items2">
+                        <span>Payment Option</span>
+                        <span>Promation & Sales</span>
+                        <span>Teams and Conditions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer-info">
+
+            <span>BAAP KA PIASA.COM COOKIES</span>
+            <p>BAAP KA PIASA and our third party partners use cookies and related technologies on this website</p>
+        </div>
+
+    </footer>
+    <script>
+        // hamburger
+        let hamburger = document.getElementById("hamburger")
+        let hamline = document.getElementsByClassName("line")
+        let menu = document.getElementById("names")
+        let webname = document.getElementById("webname")
+        let navlinkes = document.getElementById("navlinkes")
+
+        hamburger.addEventListener("click", () => {
+            console.log(hamburger.getAttribute("data-menu"))
+            if (hamburger.getAttribute("data-menu") == "false") {
+                console.log(hamline)
+                hamline[0].style.rotate = "40deg"
+                hamline[1].style.cssText = "rotate: -40deg ; position: relative;top: -7px"
+                hamline[2].style.cssText = "rotate: -40deg;display: none;"
+                menu.style.display = "flex"
+                menu.setAttribute("data-menu", "true")
+                let nametime = setTimeout(() => {
+                    webname.setAttribute("data-menu", "true")
+                }, 200)
+                navlinkes.setAttribute("data-menu", "true")
+                hamburger.setAttribute("data-menu", "true")
+                document.body.style.overflow = "hidden"
+            } else if (hamburger.getAttribute("data-menu") == "true") {
+
+                console.log("ok")
+                hamline[0].style.rotate = ""
+                hamline[1].style.cssText = ""
+                hamline[2].style.cssText = ""
+                    // menu.style.display = "none"
+                menu.setAttribute("data-menu", "false")
+                let nametime = setTimeout(() => {
+                    webname.setAttribute("data-menu", "false")
+                }, 200)
+                hamburger.setAttribute("data-menu", "false")
+                document.body.style.overflow = ""
+            }
+        })
+
+        //password
+        const togglePassword = document.getElementById("togglePassword1");
+
+        const password = document.getElementById("Password");
+
+
+
+
+        togglePassword.addEventListener("click", function() {
+            // toggle the type attribute
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            if (togglePassword.classList.contains("fa-eye-slash")) {
+                togglePassword.classList.remove("fa-eye-slash")
+                togglePassword.classList.add("fa-eye")
+            } else {
+                togglePassword.classList.remove("fa-eye")
+                togglePassword.classList.add("fa-eye-slash")
+            }
+
+        });
+
+
+        // prevent form submit
+        const form = document.querySelector("form");
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+        });
+        let modeselector = document.getElementById("selector")
+        let webmode = document.getElementById("webmode")
+        let svgimg = document.querySelector(".cls-1")
+            // let drakmode = document.querySelector(".selectortoggle")
+        webmode.addEventListener("click", () => {
+            console.log("ok")
+
+            modeselector.classList.toggle("selectortoggle")
+            document.body.classList.toggle("darkmode")
+            svgimg.classList.toggle("svgchangecolor")
+        })
+    </script>
+
+</body>
+
+</html>
