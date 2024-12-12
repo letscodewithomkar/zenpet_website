@@ -2,10 +2,17 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-$servername = getenv('DB_HOST');    
-$username = getenv('DB_USER');       
-$password = getenv('DB_PASSWORD');      
-$dbname = getenv('DB_NAME'); 
+$mysqlUrl = getenv('MYSQL_URL');
+
+// Parse the MySQL URL into components
+$parsedUrl = parse_url($mysqlUrl);
+
+// Extract connection details
+$host = $parsedUrl['host'];
+$username = $parsedUrl['user'];
+$password = $parsedUrl['pass'];
+$database = ltrim($parsedUrl['path'], '/');
+$port = $parsedUrl['port'];
 
 // Retrieve JSON data from the request
 $data = json_decode(file_get_contents("php://input"), true);
