@@ -1,7 +1,7 @@
 <?php
 // Retrieve the environment variable
 $mysqlUrl = getenv('MYSQL_URL');
-
+echo "MYSQL_URL: " . $mysqlUrl;
 // Parse the MySQL URL into components
 $parsedUrl = parse_url($mysqlUrl);
 
