@@ -1,18 +1,24 @@
 <?php
-// Fetch database credentials from environment variables
-$servername = getenv('DB_HOST');        // Hostname of the database
-$username = getenv('DB_USER');          // Database username
-$password = getenv('DB_PASSWORD');          // Database password
-$dbname = getenv('DB_NAME');            // Database name
-$port = getenv('DB_PORT');              // Database port (e.g., 5432)
+// Retrieve the environment variable
+$mysqlUrl = getenv('MYSQL_URL');
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
+// Parse the MySQL URL into components
+$parsedUrl = parse_url($mysqlUrl);
 
-// Check connection
+// Extract connection details
+$host = $parsedUrl['host'];
+$username = $parsedUrl['user'];
+$password = $parsedUrl['pass'];
+$database = ltrim($parsedUrl['path'], '/');
+$port = $parsedUrl['port'];
+
+// Create a connection to MySQL
+$conn = new mysqli($host, $username, $password, $database, $port);
+
+// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-} else {
-    // Connection successful
 }
+
+echo "Connected successfully";
 ?>
