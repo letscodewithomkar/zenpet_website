@@ -6,6 +6,8 @@ include("connection.php");
 if (isset($_POST['login'])) {
     $name = $_POST['username'];
     $userpassword = $_POST['password'];
+    echo $name ;
+    echo $userpassword;
     $query = "SELECT * FROM user WHERE name = ?";
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "s", $name);
