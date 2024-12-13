@@ -7,6 +7,11 @@ $dbname = getenv('DB_NAME');            // Database name
 $port = getenv('DB_PORT');              // Database port (e.g., 5432)
 
 // Create connection
+echo $servername;
+echo $username;
+echo $password;
+echo $dbname;
+echo $port;
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
 
 // Check connection
