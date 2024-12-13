@@ -1,10 +1,10 @@
 <?php
 // Fetch database credentials from environment variables
-$servername = getenv('DB_HOST');        // Hostname of the database
-$username = getenv('DB_USER');          // Database username
-$password = getenv('DB_PASSWORD');          // Database password
-$dbname = getenv('DB_NAME');            // Database name
-$port = getenv('DB_PORT');              // Database port (e.g., 5432)
+$servername = 'sql.freedb.tech';        // Hostname of the database
+$username = 'freedb_zenpets_user';          // Database username
+$password = 'g36EnEw%yHPK&Yk';          // Database password
+$dbname = 'freedb_zenpetsdb';            // Database name
+$port = '3306';              // Database port (e.g., 5432)
 
 // Create connection
 echo $servername;
