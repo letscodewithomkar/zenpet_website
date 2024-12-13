@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // Fetch database credentials from environment variables
-$servername = ' sql12.freemysqlhosting.net';        // Hostname of the database
+$servername = 'sql12.freemysqlhosting.net';        // Hostname of the database
 $username = 'sql12751872';          // Database username
 $password = 'gIUpPytbyP';          // Database password
 $dbname = 'sql12751872';            // Database name
