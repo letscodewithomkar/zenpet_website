@@ -456,11 +456,6 @@ function popupbooking(card) {
                     })
                     .catch(error => console.error("Error:", error));
                 });
-                fetch('https://zenpet.onrender.com/BookAppointment.php', { /*...*/ })
-                .then(response => response.text())
-                .then(data => {
-                    console.log("come on",data);
-                });
             }
         }
     });

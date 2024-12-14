@@ -26,7 +26,6 @@ $stmt = $conn->prepare($query);
 $stmt->bind_param("s", $usersname);
 $stmt->execute();
 $result = $stmt->get_result();
-echo $result;
 $bookedDoctors = [];
 while ($row = $result->fetch_assoc()) {
     $bookedDoctors[] = $row['drname'];
