@@ -671,6 +671,7 @@ if(!document.getElementById("bookedtime").querySelector('span')==""){
     });
 }
 window.addEventListener('load',()=>{
+    console.log("this woking also")
     const infoBox = document.querySelectorAll('.category-servies-info-box.other-dr-servies-box');
     infoBox.forEach(element => {
         const cardbutton = element.querySelector(".option-button.booking-dr button");
