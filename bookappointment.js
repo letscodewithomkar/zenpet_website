@@ -649,7 +649,7 @@ if(!document.getElementById("bookedtime").querySelector('span')==""){
     document.getElementById("comfirm_btn").addEventListener("click", function() {
         let bookedDate = document.getElementById("bookeddate").innerText;
         let bookedTime = document.getElementById("bookedtime").innerText;
-        fetch("BookAppointment.php", {
+        fetch("https://zenpet.onrender.com/BookAppointment.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -662,7 +662,7 @@ if(!document.getElementById("bookedtime").querySelector('span')==""){
         })
         .catch(error => console.error("Error:", error));
     });
-    fetch('bookappointment.php', { /*...*/ })
+    fetch('https://zenpet.onrender.com/bookappointment.php', { /*...*/ })
     .then(response => response.text())
     .then(data => {
     });
