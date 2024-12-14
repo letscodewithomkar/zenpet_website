@@ -442,7 +442,8 @@ function popupbooking(card) {
         }
     });
     if (popup.getAttribute("mobileversion") == 'false') {
-        popup.style.top = (topPosition - 70) + 'px';
+        console.log(savedScrollPosition);
+        popup.style.top = (topPosition - 47) + 'px';
     }
     rendercalenderandtime(card);
 }
@@ -528,6 +529,7 @@ function cardclickfun(card) {
         let savedScrollPosition = Math.abs(window.scrollY);
         popupdiv.style.top = `${savedScrollPosition}px`;
         if(window.innerWidth < '401' && window.innerWidth > "320" ) {
+            console.log(savedScrollPosition);
             popupdiv.style.top = `${savedScrollPosition-7}px`;
         }
         if(popupdiv.getAttribute("mobileversion") == "true" && popupdiv.getAttribute("popupison") == "true") {
@@ -547,6 +549,7 @@ function cardclickfun(card) {
             let savedScrollPosition = Math.abs(window.scrollY);
             popupdiv.style.top = `${savedScrollPosition}px`;
             if (window.innerWidth < '401' && window.innerWidth > "320") {
+                console.log(savedScrollPosition);
                 popupdiv.style.top = `${savedScrollPosition-7}px`;
             }
             if (popupdiv.getAttribute("mobileversion") == "true" && popupdiv.getAttribute("popupison") == "true") {
