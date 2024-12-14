@@ -442,7 +442,7 @@ function popupbooking(card) {
         }
     });
     if (popup.getAttribute("mobileversion") == 'false') {
-        console.log(savedScrollPosition);
+        console.log(topPosition);
         popup.style.top = (topPosition - 47) + 'px';
     }
     rendercalenderandtime(card);
