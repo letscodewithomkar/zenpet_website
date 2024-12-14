@@ -3,10 +3,10 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // Fetch database credentials from environment variables
-$servername = 'sql12.freemysqlhosting.net';        // Hostname of the database
-$username = 'sql12751872';          // Database username
-$password = 'gIUpPytbyP';          // Database password
-$dbname = 'sql12751872';            // Database name
+$servername = 'bbx920ljhqgdgakvhlzx-mysql.services.clever-cloud.com';        // Hostname of the database
+$username = 'uq7bouzszt9dxdlv';          // Database username
+$password = 'Mm9H2xWFdsfCAXeggVEa';          // Database password
+$dbname = 'bbx920ljhqgdgakvhlzx';            // Database name
 $port = '3306';              // Database port (e.g., 5432)
 
 // Create connection
