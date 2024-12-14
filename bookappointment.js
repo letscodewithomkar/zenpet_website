@@ -438,7 +438,30 @@ function popupbooking(card) {
             document.body.style.overflow = 'auto';
             popup.style.zIndex=0;
             popup.classList.add("hidden");
+            if(!document.getElementById("bookedtime").querySelector('span')==""){
 
+                document.getElementById("comfirm_btn").addEventListener("click", function() {
+                    let bookedDate = document.getElementById("bookeddate").innerText;
+                    let bookedTime = document.getElementById("bookedtime").innerText;
+                    fetch("https://zenpet.onrender.com/BookAppointment.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ date: bookedDate, time: bookedTime })
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        alert("Booking confirmed!");
+                    })
+                    .catch(error => console.error("Error:", error));
+                });
+                fetch('https://zenpet.onrender.com/BookAppointment.php', { /*...*/ })
+                .then(response => response.text())
+                .then(data => {
+                    console.log("come on",data);
+                });
+            }
         }
     });
     if (popup.getAttribute("mobileversion") == 'false') {
@@ -622,11 +645,6 @@ function calendarsdateclickfun(calendardatediv,card) {
         popup.setAttribute('showslot', 'true');
     }
 }
-
-
-
-
-
 let closeicon = document.getElementById("closeicon");
 let popup = document.getElementById('popup');
 let slotbox1 = document.getElementById("slot_box");
@@ -647,30 +665,32 @@ closeicon.addEventListener("click", () => {
 })
 
 
-if(!document.getElementById("bookedtime").querySelector('span')==""){
+// if(!document.getElementById("bookedtime").querySelector('span')==""){
 
-    document.getElementById("comfirm_btn").addEventListener("click", function() {
-        let bookedDate = document.getElementById("bookeddate").innerText;
-        let bookedTime = document.getElementById("bookedtime").innerText;
-        fetch("https://zenpet.onrender.com/BookAppointment.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ date: bookedDate, time: bookedTime })
-        })
-        .then(response => response.text())
-        .then(data => {
-            alert("Booking confirmed!");
-        })
-        .catch(error => console.error("Error:", error));
-    });
-    fetch('https://zenpet.onrender.com/BookAppointment.php', { /*...*/ })
-    .then(response => response.text())
-    .then(data => {
-    });
-}
+//     document.getElementById("comfirm_btn").addEventListener("click", function() {
+//         let bookedDate = document.getElementById("bookeddate").innerText;
+//         let bookedTime = document.getElementById("bookedtime").innerText;
+//         fetch("https://zenpet.onrender.com/BookAppointment.php", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({ date: bookedDate, time: bookedTime })
+//         })
+//         .then(response => response.text())
+//         .then(data => {
+//             alert("Booking confirmed!");
+//         })
+//         .catch(error => console.error("Error:", error));
+//     });
+//     fetch('https://zenpet.onrender.com/BookAppointment.php', { /*...*/ })
+//     .then(response => response.text())
+//     .then(data => {
+//         console.log("come on",data);
+//     });
+// }
 window.addEventListener('load',()=>{
+    debugger;
     console.log("this woking also")
     const infoBox = document.querySelectorAll('.category-servies-info-box.other-dr-servies-box');
     infoBox.forEach(element => {
