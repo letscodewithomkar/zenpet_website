@@ -1,17 +1,12 @@
 <?php 
 header("Access-Control-Allow-Origin: *"); // Allow CORS
 header("Content-Type: application/json"); // JSON response
-$mysqlUrl = getenv('MYSQL_URL');
 
-// Parse the MySQL URL into components
-$parsedUrl = parse_url($mysqlUrl);
-
-// Extract connection details
-$host = $parsedUrl['host'];
-$username = $parsedUrl['user'];
-$password = $parsedUrl['pass'];
-$database = ltrim($parsedUrl['path'], '/');
-$port = $parsedUrl['port'];
+$servername = 'bbx920ljhqgdgakvhlzx-mysql.services.clever-cloud.com';        // Hostname of the database
+$username = 'uq7bouzszt9dxdlv';          // Database username
+$password = 'Mm9H2xWFdsfCAXeggVEa';          // Database password
+$dbname = 'bbx920ljhqgdgakvhlzx';            // Database name
+$port = '3306';     
 
 
 // Retrieve and sanitize the username from GET request

@@ -676,6 +676,7 @@ const fetchCart = async () => {
             const username = await getUsername();
             if (!username) throw new Error("Username is missing or invalid");
             // Fetch cartlist from the server
+            console.log("its woking")
             const response = await fetch(`https://zenpet.onrender.com/fetch_cart.php?username=${username}`);
             if (!response.ok) throw new Error(`Failed to fetch cart: ${response.status}`);
             const data = await response.json();
