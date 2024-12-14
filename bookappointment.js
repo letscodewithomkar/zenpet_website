@@ -662,7 +662,7 @@ if(!document.getElementById("bookedtime").querySelector('span')==""){
         })
         .catch(error => console.error("Error:", error));
     });
-    fetch('https://zenpet.onrender.com/bookappointment.php', { /*...*/ })
+    fetch('https://zenpet.onrender.com/BookAppointment.php', { /*...*/ })
     .then(response => response.text())
     .then(data => {
     });
