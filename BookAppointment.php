@@ -1109,7 +1109,7 @@ function sendBookingData() {
         // AJAX request to send data to bookappointment.php
         console.log("Doctor Name Selected:", bookedDr);
 
-        fetch('http://localhost:8080/BookAppointment.php', {
+        fetch('https://zenpet.onrender.com/BookAppointment.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ date: bookedDate, time: bookedTime, doctorname:bookedDr })
