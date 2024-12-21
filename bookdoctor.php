@@ -1034,7 +1034,7 @@ function sendBookingData() {
         const bookedDate = bookeddateelement ? bookeddateelement.innerText : "";
         const bookedTime = bookedTimeElement ? bookedTimeElement.innerText : "";
 
-        fetch('http://zenpet.onrender.com/BookAppointment.php', {
+        fetch('https://zenpet.onrender.com/BookAppointment.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ date: bookedDate, time: bookedTime, doctorname:bookedDr })
