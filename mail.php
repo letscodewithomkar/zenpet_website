@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "DB_PASSWORD: " . getenv('SMTP_PASS') . "<br>";
         echo "DB_PORT: " .  getenv('SMTP_PORT') . "<br>";
         // Recipients
-        $mail->setFrom(getenv('SMTP_FROM_EMAIL'), 'Contact Form'); // Sender email from environment variable
+        $mail->setFrom(getenv('SMTP_FROM_EMAIL'), '$name'); // Sender email from environment variable
         $mail->addAddress(getenv('SMTP_TO_EMAIL'));               // Recipient email from environment variable
 
         // Content
