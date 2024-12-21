@@ -23,7 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Password   = getenv('SMTP_PASS');                  // SMTP password from environment variable
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;       
         $mail->Port       = getenv('SMTP_PORT');                  // SMTP port from environment variable
-
+        echo "DB_HOST: " . getenv('SMTP_HOST') . "<br>";
+        echo "DB_USER: " .  getenv('SMTP_USER')  . "<br>";
+        echo "DB_PASSWORD: " . getenv('SMTP_PASS') . "<br>";
+        echo "DB_PORT: " .  getenv('SMTP_PORT') . "<br>";
         // Recipients
         $mail->setFrom(getenv('SMTP_FROM_EMAIL'), 'Contact Form'); // Sender email from environment variable
         $mail->addAddress(getenv('SMTP_TO_EMAIL'));               // Recipient email from environment variable
