@@ -581,7 +581,6 @@ function changetrashelement(event,userselectedwishlist) {
         }
      }
       localStorage.setItem('cartlist', JSON.stringify(retrievedcart));
-      console.log(retrievedcart);
       updateCart(retrievedcart);
     }
 
@@ -676,8 +675,6 @@ const fetchCart = async () => {
             // Fetch username
             const username = await getUsername();
             if (!username) throw new Error("Username is missing or invalid");
-            // Fetch cartlist from the server
-            console.log("its woking")
             const response = await fetch(`http://localhost:8080/fetch_cart.php?username=${username}`);
             if (!response.ok) throw new Error(`Failed to fetch cart: ${response.status}`);
             const data = await response.json();
@@ -722,7 +719,6 @@ const updateCart =async (cartlist) => {
         .then((response) => response.json())
         .then((data) => {
           if (data.message) {
-            console.log('Success:', data.message);
           } else if (data.error) {
             console.error('Error updating cart:', data.error);
           }
@@ -732,7 +728,6 @@ const updateCart =async (cartlist) => {
         });
       //  const data = await response.json();
 };
-console.log(retrievedcart);
 if(retrievedcart==null ||retrievedcart==""){
 let totalproductincart = document.querySelector("#total_product_in_cart span");
 totalproductincart.innerText="0";

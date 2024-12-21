@@ -25,9 +25,7 @@ let otherdrserviesbox=document.querySelectorAll(".other-dr-servies-box");
 
 for (let i = 0; i < drcategorytype.length; i++) {
     //debugger;
-    console.log(drcategorytype.length)
-    console.log(categoryallinfo.length)
-   // console.log(optionbuttondiv.length)
+
     
     drcategorytype[i].addEventListener("mouseover", () => {
         
@@ -54,7 +52,6 @@ for (let i = 0; i < drcategorytype.length; i++) {
     }
         ///////////////////////////
         for (let i = 0; i < petcategory.length; i++) {
-        console.log(petcategory)
         petcategory[i].addEventListener("mouseover", () => {
             let optionbuttondiv;
             let optionbutton;
@@ -64,7 +61,6 @@ for (let i = 0; i < drcategorytype.length; i++) {
                    petcategoryall[i].setAttribute("id", "changeinfobg");
                    petcategory[i].setAttribute("id", "changecardbg");
         })
-        console.log(petcategory.length)
         petcategory[i].addEventListener("mouseout", () => {
             petcategoryall[i].setAttribute("id", "");
             petcategory[i].setAttribute("id", "");
@@ -570,9 +566,6 @@ function isPastTime(currentHour, currentMinutes, endHour) {
 function addclicktodrcard() {
     document.querySelectorAll('.drcard').forEach((card) => {
         const infoBox = card.querySelector('.other-dr-servies-box');
-        debugger;
-        console.log(infoBox);
-        console.log(infoBox.getAttribute('drisbooked'))
         setTimeout(() => {
         if (infoBox.getAttribute('drisbooked') != 'true'){
             card.addEventListener('click', () => {cardclickfun(card)});
@@ -595,7 +588,6 @@ function cardclickfun(card) {
         let savedScrollPosition = Math.abs(window.scrollY);
         popupdiv.style.top = `${savedScrollPosition}px`;
         if(window.innerWidth < '401' && window.innerWidth > "320" ) {
-            console.log(savedScrollPosition);
             popupdiv.style.top = `${savedScrollPosition-7}px`;
         }
         if(popupdiv.getAttribute("mobileversion") == "true" && popupdiv.getAttribute("popupison") == "true") {
@@ -615,7 +607,6 @@ function cardclickfun(card) {
             let savedScrollPosition = Math.abs(window.scrollY);
             popupdiv.style.top = `${savedScrollPosition}px`;
             if (window.innerWidth < '401' && window.innerWidth > "320") {
-                console.log(savedScrollPosition);
                 popupdiv.style.top = `${savedScrollPosition-7}px`;
             }
             if (popupdiv.getAttribute("mobileversion") == "true" && popupdiv.getAttribute("popupison") == "true") {
@@ -717,12 +708,8 @@ if(!document.getElementById("bookedtime").querySelector('span')=="" ){
         document.querySelectorAll('.drcard').forEach((card) => {
         if(card.querySelector(".other-dr-servies-info").getAttribute('cardisselected')=="true"){
             doctorName=card.querySelector(".other-dr-servies-info h2").innerText;
-            console.log(doctorName);
-            console.log(card.querySelector(".other-dr-servies-info h2").innerText)
         }
     })
-    console.log(doctorName);
-    console.log(bookedDoctors);
     if(doctorName.includes(bookedDoctors)){
 
     }
@@ -740,7 +727,6 @@ if(!document.getElementById("bookedtime").querySelector('span')=="" ){
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-        console.log('Booking confirmed!');
         // Handle successful booking, e.g., show a confirmation message
       } else {
         console.error('Booking failed:', data.message);
@@ -755,12 +741,9 @@ if(!document.getElementById("bookedtime").querySelector('span')=="" ){
 }
 let bookedDoctors
 window.addEventListener('load',()=>{
-    //debugger;
-    //console.log("the dr",bookedDoctors);
     fetch('bookeddr.php')
     .then(response => response.json())
     .then(text => {
-        console.log("Raw Response:", text);
         bookedDoctors=text;
     })
     .catch(error => {
@@ -803,22 +786,17 @@ window.addEventListener('load',()=>{
           
             setinfoincard(petservicescardselected);
             const infoBox = document.querySelectorAll('.category-servies-info-box.other-dr-servies-box');
-            console.log(infoBox);
             infoBox.forEach(element => {
                 //debugger;
                 element.style.backgroundColor="#28B45F";
                 
                 const cardbutton = element.querySelector(".option-button.booking-dr button");
                 cardbutton.innerText = "Schedule";
-                console.log(element);
         const doctorName = element.querySelector('h2').innerText.trim();
-            console.log("Doctor Name:", doctorName);
-            console.log("Doctor booked:", bookedDoctors);
             // Check if this doctor is in the list of booked doctors
             if (bookedDoctors.includes(doctorName)) {
                 
                 element.setAttribute("drisbooked", "true");
-                console.log(`Doctor ${doctorName} is booked.`);
             }
          else {
             console.log("Doctor info element not found within card.");

@@ -346,7 +346,6 @@ function whishlistresponzie(params) {
 }
 window.addEventListener('resize', whishlistresponzie);
 window.addEventListener('load', whishlistresponzie);
-console.log(retrievedcart);
 if(retrievedcart==null ||retrievedcart==""){
 let totalproductincart = document.querySelector("#total_product_in_cart span");
 totalproductincart.innerText="0";

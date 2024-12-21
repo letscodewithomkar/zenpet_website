@@ -941,20 +941,15 @@ h2,h3{
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("DOM fully loaded and parsed2");
     const cardbox = document.querySelectorAll('.booking-dr');
     // First Observer: Watch for card clicks to display date and time options
     cardbox.forEach((card, i) => {
         card.addEventListener("click", () => {
-            console.log("Card clicked:", i);
-
             // Create a MutationObserver to watch for date selection
             const dateObserver = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
                     const dateOption = document.getElementById('popup'); // Update selector to match date options
                     if (dateOption && dateOption.style.display !== "none") {
-                        console.log("Date options are now visible");
-
                         // Now observe time slot visibility
                         observeTimeSlot();
                         dateObserver.disconnect(); // Stop observing for date options once confirmed
@@ -973,7 +968,6 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Initial check for time options visibility
         if (timeBox && timeBox.style.display !== "none" && !timeOptionsVisible) {
-            console.log("Time options are now visible");
             timeOptionsVisible = true;
 
             // Set up second observer to watch for the confirm button
@@ -984,7 +978,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const timeObserver = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (timeBox && timeBox.style.display !== "none" && !timeOptionsVisible) {
-                    console.log("Time options are now visible");
                     timeOptionsVisible = true;
 
                     // Set up second observer to watch for the confirm button
@@ -1004,7 +997,6 @@ document.addEventListener("DOMContentLoaded", function() {
             mutations.forEach((mutation) => {
                 const confirmBtn = document.getElementById("comfirm_btn");
                 if (confirmBtn && confirmBtn.style.display !== "none" && !comfirmvisiable) {
-                    console.log("Confirm button is now visible");
                     comfirmvisiable=true;
                     confirmBtn.addEventListener("click", sendBookingData);
                     confirmObserver.disconnect(); // Stop observing once the button is set up
@@ -1018,30 +1010,21 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function sendBookingData() {
-    console.log("sendBookingData called");
-
     const bookedTimeElement = document.getElementById("bookedtime");
     const bookeddateelement = document.getElementById("bookeddate");
     const cardbox = document.querySelectorAll('.other-dr-servies-info');
-
     let bookedDr = "";
-    console.log("bookedTimeElement",bookedTimeElement);
-    console.log(cardbox);
     for (let i = 0; i < cardbox.length; i++) {
-        console.log("this current card",cardbox[i]);
         if (cardbox[i].getAttribute("cardisselected") === "true") {
             const h2Element = cardbox[i].querySelector('h2');
-            console.log(h2Element);
             if (h2Element) {
                 bookedDr = h2Element.innerText;
-                console.log("Doctor Name Selected:", bookedDr);
                 break;
             }
         }
     }
 
     if (!bookedDr) {
-        console.log(bookeddr)
         error_log("No doctor selected. Please select a doctor.");
         alert("No doctor selected. Please select a doctor.");
         return;
@@ -1051,19 +1034,13 @@ function sendBookingData() {
         const bookedDate = bookeddateelement ? bookeddateelement.innerText : "";
         const bookedTime = bookedTimeElement ? bookedTimeElement.innerText : "";
 
-        console.log("Booking Info:", bookedDate, bookedTime, bookedDr);
-
-        // AJAX request to send data to bookappointment.php
-        console.log("Doctor Name Selected:", bookedDr);
-
-        fetch('http://localhost:8080/BookAppointment.php', {
+        fetch('http://zenpet.onrender.com/BookAppointment.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ date: bookedDate, time: bookedTime, doctorname:bookedDr })
         })
         .then(response => response.text())
         .then(data => {
-            console.log(data);
         })
         .catch(error => {
             error_log('Error:', error);
