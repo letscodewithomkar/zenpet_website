@@ -581,6 +581,7 @@ function changetrashelement(event,userselectedwishlist) {
         }
      }
       localStorage.setItem('cartlist', JSON.stringify(retrievedcart));
+      console.log(retrievedcart);
       updateCart(retrievedcart);
     }
 
@@ -660,7 +661,7 @@ function getwishlist(params) {
 }
 const getUsername = async () => {
     try {
-        const response = await fetch("https://zenpet.onrender.com/get_username.php");
+        const response = await fetch("http://localhost:8080/get_username.php");
         const data = await response.json();
         return data.username; // Return the username for use in other functions
     } catch (error) {
@@ -677,7 +678,7 @@ const fetchCart = async () => {
             if (!username) throw new Error("Username is missing or invalid");
             // Fetch cartlist from the server
             console.log("its woking")
-            const response = await fetch(`https://zenpet.onrender.com/fetch_cart.php?username=${username}`);
+            const response = await fetch(`http://localhost:8080/fetch_cart.php?username=${username}`);
             if (!response.ok) throw new Error(`Failed to fetch cart: ${response.status}`);
             const data = await response.json();
             // Check if the cart exists for the user
@@ -702,35 +703,40 @@ const fetchCart = async () => {
     
 fetchCart();
 const updateCart =async (cartlist) => {
-    try {
-        // Validate cartlist
-        if (!Array.isArray(cartlist) || cartlist.length === 0) {
-            console.error("Invalid or empty cartlist. Aborting update.");
-            return;
-        }
+    
+    const username = await getUsername();
+    if (!username) throw new Error("Username is missing or invalid");
 
-        // Fetch username
-        const username = await getUsername();
-        if (!username) throw new Error("Username is missing or invalid");
-
-        // Send updated cartlist to the server
-        const response = await fetch("https://zenpet.onrender.com/update_cart.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username: username,
-                cartlist: JSON.stringify(cartlist), // Send cartlist as a JSON string
-            }),
+    const dataToSend = {
+        username: username,
+        cartlist: JSON.stringify(cartlist) || [], // Default to an empty array if undefined/null
+      };
+      
+      fetch('update_cart.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend), // Convert to JSON string, even if cartlist is empty
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message) {
+            console.log('Success:', data.message);
+          } else if (data.error) {
+            console.error('Error updating cart:', data.error);
+          }
+        })
+        .catch((error) => {
+          console.error('Fetch Error:', error);
         });
-        
-        const data = await response.json();
-    } catch (error) {
-        console.error("Error updating cart:", error);
-    }
+      //  const data = await response.json();
 };
-
+console.log(retrievedcart);
+if(retrievedcart==null ||retrievedcart==""){
+let totalproductincart = document.querySelector("#total_product_in_cart span");
+totalproductincart.innerText="0";
+}
 
 let changefillicon=false;
 function addwishlist(userselectedwishlist=[],clickfillicon=null) {

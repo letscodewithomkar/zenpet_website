@@ -6,7 +6,7 @@ $servername = getenv('DB_HOST');        // Hostname of the database
 $username = getenv('DB_USER');          // Database username
 $password = getenv('DB_PASSWORD');          // Database password
 $dbname = getenv('DB_NAME');            // Database name
-$port = getenv('DB_PORT');    
+$port = getenv('DB_PORT');        
 
 
 // Retrieve and sanitize the username from GET request
@@ -27,7 +27,7 @@ if ($conn->connect_error) {
 }
 
 // Prepare and execute SQL query
-$sql = "SELECT cartlist FROM cart WHERE username = ?";
+$sql = "SELECT drname FROM bookings WHERE username = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $currentUsername);
 $stmt->execute();

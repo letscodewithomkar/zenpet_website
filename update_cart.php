@@ -2,11 +2,11 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-$servername = 'bbx920ljhqgdgakvhlzx-mysql.services.clever-cloud.com';        // Hostname of the database
-$username = 'uq7bouzszt9dxdlv';          // Database username
-$password = 'Mm9H2xWFdsfCAXeggVEa';          // Database password
-$dbname = 'bbx920ljhqgdgakvhlzx';            // Database name
-$port = '3306';     
+$servername = getenv('DB_HOST');        // Hostname of the database
+$username = getenv('DB_USER');          // Database username
+$password = getenv('DB_PASSWORD');          // Database password
+$dbname = getenv('DB_NAME');            // Database name
+$port = getenv('DB_PORT');         
 
 // Retrieve JSON data from the request
 $data = json_decode(file_get_contents("php://input"), true);
@@ -27,36 +27,33 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die(json_encode(['error' => "Connection failed: " . $conn->connect_error]));
 }
+if ($cartlist === "[]") { // Check if cartlist is an empty array
 
-// Check if the user already has an entry in the cart
-$checkSql = "SELECT * FROM cart WHERE username = ?";
-$checkStmt = $conn->prepare($checkSql);
-$checkStmt->bind_param("s", $currentUsername);
-$checkStmt->execute();
-$checkResult = $checkStmt->get_result();
-
-// If an entry exists, delete the previous entry
-if ($checkResult->num_rows > 0) {
     $deleteSql = "DELETE FROM cart WHERE username = ?";
     $deleteStmt = $conn->prepare($deleteSql);
     $deleteStmt->bind_param("s", $currentUsername);
-    $deleteStmt->execute();
-    $deleteStmt->close();
-}
 
-// Insert the new cartlist for the user
-$insertSql = "INSERT INTO cart (username, cartlist) VALUES (?, ?)";
-$insertStmt = $conn->prepare($insertSql);
-$insertStmt->bind_param("ss", $currentUsername, $cartlist);
-
-if ($insertStmt->execute()) {
-    echo json_encode(['message' => 'Cart updated successfully']);
+    if ($deleteStmt->execute()) {
+        echo json_encode(['message' => 'Cart deleted successfully']);
+    } else {
+        echo json_encode(['error' => 'Failed to delete cart']);
+    }
 } else {
-    echo json_encode(['error' => 'Failed to update cart']);
+    $insertSql = "INSERT INTO cart (username, cartlist) 
+                  VALUES (?, ?) 
+                  ON DUPLICATE KEY UPDATE cartlist = VALUES(cartlist)";
+    $insertStmt = $conn->prepare($insertSql);
+    $insertStmt->bind_param("ss", $currentUsername, $cartlist);
+
+    if ($insertStmt->execute()) {
+        echo json_encode(['message' => 'Cart updated successfully']);
+    } else {
+        echo json_encode(['error' => 'Failed to update cart']);
+    }
 }
+
 
 // Close statements and connection
 $insertStmt->close();
-$checkStmt->close();
 $conn->close();
 ?>

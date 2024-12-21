@@ -91,6 +91,7 @@ facartshopping[0].addEventListener("click", () => {
         facartshopping[0].setAttribute("cartison", "false")
     });
 });
+
 totalproductincart.addEventListener("click", () => {
     if (facartshopping[0].getAttribute("cartison") == "true") {
         wishlistsection.style.display = "none";
@@ -345,3 +346,8 @@ function whishlistresponzie(params) {
 }
 window.addEventListener('resize', whishlistresponzie);
 window.addEventListener('load', whishlistresponzie);
+console.log(retrievedcart);
+if(retrievedcart==null ||retrievedcart==""){
+let totalproductincart = document.querySelector("#total_product_in_cart span");
+totalproductincart.innerText="0";
+}

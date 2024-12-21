@@ -458,7 +458,7 @@ if($userprofile != true){
                 <div class="navbar-nav">
                     <a class="nav-link anavbarlinks"  aria-current="page" href="./index.php">Home</a>
                     <a class="nav-link anavbarlinks"  href="./shop.php">Shop</a>
-                    <a class="nav-link anavbarlinks"  href="./BookAppointment.php">Book Appointment</a>
+                    <a class="nav-link anavbarlinks"  href="./bookdoctor.php">Book Appointment</a>
                     <a class="nav-link anavbarlinks"  href="./contact.php">Contact us</a>
                     <div id="searchbar-section">
                         <div id="search-area">
@@ -469,7 +469,7 @@ if($userprofile != true){
                         </div>
                     </div>
                     <div id="total_product_in_cart">
-                    <span></span>
+                    <span <?php echo ($userstatus == 0) ? 'style="display:none;"' : '' ?>></span>
                     <a class="nav-link anavbarlinks fa-solid fa-cart-shopping fa-lg"></a>
                     </div>
                     <a class="nav-link anavbarlinks" href="./login.php"<?php echo ($userstatus == 1) ? 'style="display:none;"' : '' ?> >Log In</a>
