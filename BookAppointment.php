@@ -24,10 +24,7 @@ $doctorName = $data['doctorName'];
 $bookedDate = $data['date'];
 $bookedTime = $data['time'];
 
-$currentDate = date("Y-m-d"); // Get the current system date in YYYY-MM-DD format
-$deleteQuery = "DELETE FROM bookings WHERE STR_TO_DATE(CONCAT(booking_date, YEAR(CURDATE())), '%d%b%Y') < CURDATE()";
-$deleteStmt = $conn->prepare($deleteQuery);
-$deleteStmt->execute();
+
 // Check if the user has already booked the same doctor
 $query = "SELECT COUNT(*) AS count FROM bookings WHERE username = ? AND drname = ? AND booking_date = ? AND booking_time = ?";
 $stmt = $conn->prepare($query);
