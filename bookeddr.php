@@ -17,6 +17,10 @@ $usersname = $_SESSION['personname']; // Get the username from the session
 $data = json_decode(file_get_contents("php://input"), true); // Get the JSON input
 
 // Process the incoming data (e.g., booking details)
+$currentDate = date("Y-m-d"); // Get the current system date in YYYY-MM-DD format
+$deleteQuery = "DELETE FROM bookings WHERE STR_TO_DATE(CONCAT(booking_date, YEAR(CURDATE())), '%d%b%Y') < CURDATE()";
+$deleteStmt = $conn->prepare($deleteQuery);
+$deleteStmt->execute();
 
 // Database query to fetch already booked doctors
 $query = "SELECT drname FROM bookings WHERE username = ?";
