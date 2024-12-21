@@ -7,6 +7,11 @@ $username = getenv('DB_USER');          // Database username
 $password = getenv('DB_PASSWORD');          // Database password
 $dbname = getenv('DB_NAME');            // Database name
 $port = getenv('DB_PORT');       
+echo "DB_HOST: " . getenv('DB_HOST') . "<br>";
+echo "DB_USER: " . getenv('DB_USER') . "<br>";
+echo "DB_PASSWORD: " . getenv('DB_PASSWORD') . "<br>";
+echo "DB_NAME: " . getenv('DB_NAME') . "<br>";
+echo "DB_PORT: " . getenv('DB_PORT') . "<br>";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
