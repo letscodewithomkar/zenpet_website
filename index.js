@@ -218,7 +218,7 @@ const getUsername = async () => {
 const updateCart = async (cartlist) => {
     if (retrievedcart.length > 0) {
         const username = await getUsername();
-        fetch(`http://localhost/zenpets%20website/update_cart.php`, {
+        fetch(`http://zenpet.onrender.com/update_cart.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

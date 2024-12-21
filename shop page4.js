@@ -660,7 +660,7 @@ function getwishlist(params) {
 }
 const getUsername = async () => {
     try {
-        const response = await fetch("http://localhost:8080/get_username.php");
+        const response = await fetch("http://zenpet.onrender.com/get_username.php");
         const data = await response.json();
         return data.username; // Return the username for use in other functions
     } catch (error) {
@@ -675,7 +675,7 @@ const fetchCart = async () => {
             // Fetch username
             const username = await getUsername();
             if (!username) throw new Error("Username is missing or invalid");
-            const response = await fetch(`http://localhost:8080/fetch_cart.php?username=${username}`);
+            const response = await fetch(`http://zenpet.onrender.com/fetch_cart.php?username=${username}`);
             if (!response.ok) throw new Error(`Failed to fetch cart: ${response.status}`);
             const data = await response.json();
             // Check if the cart exists for the user
