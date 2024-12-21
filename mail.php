@@ -12,29 +12,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = htmlspecialchars($_POST['email']);
     $message = htmlspecialchars($_POST['message']);
 
+    // Validate email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Invalid email address. Please try again.";
+        exit;
+    }
+
     $mail = new PHPMailer(true);
 
     try {
         // Server settings
-        $mail->isSMTP();                                          
-        $mail->Host       = getenv('SMTP_HOST');                  // SMTP host from environment variable
-        $mail->SMTPAuth   = true;                                
-        $mail->Username   = getenv('SMTP_USER');                  // SMTP username from environment variable
-        $mail->Password   = getenv('SMTP_PASS');                  // SMTP password from environment variable
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;       
-        $mail->Port       = getenv('SMTP_PORT');                  // SMTP port from environment variable
-        echo "DB_HOST: " . getenv('SMTP_HOST') . "<br>";
-        echo "DB_USER: " .  getenv('SMTP_USER')  . "<br>";
-        echo "DB_PASSWORD: " . getenv('SMTP_PASS') . "<br>";
-        echo "DB_PORT: " .  getenv('SMTP_PORT') . "<br>";
-        // Recipients
-        $mail->setFrom(getenv('SMTP_FROM_EMAIL'), '$name'); // Sender email from environment variable
-        $mail->addAddress(getenv('SMTP_TO_EMAIL'));               // Recipient email from environment variable
-
+        $mail->isSMTP();
+        $mail->Host = getenv('SMTP_HOST');
+        $mail->SMTPAuth = true;
+        $mail->Username = getenv('SMTP_USERNAME'); // Replace with your SMTP username
+        $mail->Password = getenv('SMTP_PASSWORD'); // Replace with your SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port =getenv('SMTP_PORT');
+        // Email Setup
+        $mail->setFrom(getenv('SMTP_FROM_EMAIL'), 'ZenPets Website'); // Sender's name (ZenPets Website)
+        $mail->addAddress(getenv('SMTP_FROM_EMAIL')); // Recipient email address
         // Content
-        $mail->isHTML(true);                                      
+        $mail->isHTML(true);
         $mail->Subject = 'New Contact Form Submission';
-
         // Body content with user input
         $mail->Body = "<h3>Contact Form Submission</h3>
                        <p><strong>Name:</strong> $name</p>
@@ -42,10 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                        <p><strong>Message:</strong><br> $message</p>";
 
         $mail->send();
-        echo 'Message has been sent';
-        ?>
-        <meta http-equiv='refresh' content='0; url= ./contact.php'/>
-        <?php
+        header('Location: ./contact.php');
+        exit; 
+        
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
