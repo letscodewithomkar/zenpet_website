@@ -8,9 +8,13 @@ session_start();
 include("connection.php"); // Include the database connection
 
 // Ensure the user is logged in
+if (isset($_SESSION['personname'])) {
+    $userprofile = $_SESSION['personname'];
+} else {
+    $userprofile = null; // Handle default case
+}
 
-
-$usersname = $_SESSION['personname']; // Get the username from the session
+$userprofile = $_SESSION['personname']; // Get the username from the session
 $data = json_decode(file_get_contents("php://input"), true); // Decode the JSON input
 
 // Check if input data is valid
@@ -28,7 +32,7 @@ $bookedTime = $data['time'];
 // Check if the user has already booked the same doctor
 $query = "SELECT COUNT(*) AS count FROM bookings WHERE username = ? AND drname = ? AND booking_date = ? AND booking_time = ?";
 $stmt = $conn->prepare($query);
-$stmt->bind_param("ssss", $usersname, $doctorName, $bookedDate, $bookedTime);
+$stmt->bind_param("ssss", $userprofile, $doctorName, $bookedDate, $bookedTime);
 $stmt->execute();
 $result = $stmt->get_result();
 $row = $result->fetch_assoc();
@@ -41,7 +45,7 @@ if ($row['count'] > 0) {
 // Insert the booking into the database
 $sql = "INSERT INTO bookings (drname, username, booking_date, booking_time) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ssss", $doctorName, $usersname, $bookedDate, $bookedTime);
+$stmt->bind_param("ssss", $doctorName, $userprofile, $bookedDate, $bookedTime);
 
 if ($stmt->execute()) {
     echo json_encode([
