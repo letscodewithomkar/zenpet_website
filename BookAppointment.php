@@ -8,13 +8,14 @@ session_start();
 include("connection.php"); // Include the database connection
 
 // Ensure the user is logged in
+$userstatus= $_SESSION['status'];
 if (isset($_SESSION['personname'])) {
     $userprofile = $_SESSION['personname'];
 } else {
     $userprofile = null; // Handle default case
 }
 
-$userprofile = $_SESSION['personname']; // Get the username from the session
+
 $data = json_decode(file_get_contents("php://input"), true); // Decode the JSON input
 
 // Check if input data is valid
