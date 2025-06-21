@@ -14,7 +14,10 @@ if (isset($_SESSION['personname'])) {
 } else {
     $userprofile = null; // Handle default case
 }
-
+if ($userstatus==0) {
+    header('Location: login.php');
+    exit();
+}
 
 $data = json_decode(file_get_contents("php://input"), true); // Decode the JSON input
 
